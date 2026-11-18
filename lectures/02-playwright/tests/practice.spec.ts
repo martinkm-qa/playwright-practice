@@ -27,6 +27,7 @@ const dialogsURL = pathToFileURL(
 	resolve(__dirname, '../pages/dialogs.html'),
 ).href;
 
+// Verifies selecting Bulgaria updates the result text.
 test('dropdown', async ({ page }) => {
     await page.goto(homePageUrl, { waitUntil: 'domcontentloaded' });
 	await page.locator('#country').selectOption('bulgaria');
@@ -36,6 +37,7 @@ test('dropdown', async ({ page }) => {
     
 });
 
+// Verifies both interests can be selected at the same time.
 test('designTesting', async({page}) => {
     await page.goto(checkBoxesUrl, {waitUntil: 'domcontentloaded'})
     await page.locator('#interest-design').check();
@@ -46,6 +48,7 @@ test('designTesting', async({page}) => {
 })
 
 
+// Verifies the form reports an error and hides the success result when terms are not accepted.
 test('registration without terms', async({page})=> {
     await page.goto(checkBoxesUrl, {waitUntil: 'domcontentloaded'});
     await page.locator('#submit-button').click();
@@ -55,6 +58,7 @@ test('registration without terms', async({page})=> {
 
 })
 
+// Verifies editing the role in Alex Morgan's row.
 test('redacting table', async({page})=> {
     await page.goto(tables, {waitUntil: 'domcontentloaded'})
   const alexRow =  await page.getByRole('row').filter({hasText: 'Alex Morgan'})
@@ -64,6 +68,7 @@ test('redacting table', async({page})=> {
   await expect(alexRow.locator('.member-role')).toHaveText('Admin');
 })
 
+// Verifies the collection loads with six items and the expected first product.
 test('dynamic content', async({page})=> {
 await page.goto(dynamicContentUrl, {waitUntil: 'domcontentloaded'});
 await page.getByRole('button', { name: 'Load collection' }).click();
@@ -73,6 +78,7 @@ await expect(page.locator('.item').first()).toHaveText('Everyday Notebook');
 
 });
 
+// Verifies entering and saving a note inside the iframe.
 test('frames', async({page})=> {
     await page.goto(frames, {waitUntil: 'domcontentloaded'});
     const frame = await page.frameLocator('#my-frame');
@@ -82,6 +88,7 @@ test('frames', async({page})=> {
 
 })
 
+// Verifies accepting the prompt dialog and displaying the greeting.
 test('dialogs', async ({ page }) => {
   await page.goto(dialogsURL, { waitUntil: 'domcontentloaded' });
 
