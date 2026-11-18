@@ -23,6 +23,10 @@ const frames = pathToFileURL(
 	resolve(__dirname, '../pages/frames.html'),
 ).href;
 
+const dialogsURL = pathToFileURL(
+	resolve(__dirname, '../pages/dialogs.html'),
+).href;
+
 test('dropdown', async ({ page }) => {
     await page.goto(homePageUrl, { waitUntil: 'domcontentloaded' });
 	await page.locator('#country').selectOption('bulgaria');
@@ -77,3 +81,17 @@ test('frames', async({page})=> {
     await expect(frame.getByRole('status')).toHaveText('Saved note: Hello from my test!')
 
 })
+
+test('dialogs', async ({ page }) => {
+  await page.goto(dialogsURL, { waitUntil: 'domcontentloaded' });
+
+  page.once('dialog', async (dialog) => {
+    expect(dialog.type()).toBe('prompt');
+    await dialog.accept('Martin');
+  });
+  
+ await page.getByRole('button', {name: 'Enter your name'}).click();
+ await expect(page.locator('#prompt-result')).toHaveText('Hello, Martin!')
+ 
+})
+
