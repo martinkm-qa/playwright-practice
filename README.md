@@ -5,7 +5,7 @@
 ## Структура
 
 - `lectures/02-playwright/pages/` — локални HTML страници за упражнения.
-- `lectures/02-playwright/tests/practice.spec.ts` — мои тестове за упражненията.
+- `lectures/02-playwright/tests/practice.spec.ts` — мои тестове за упражненията. 1. **Interactions**
 
 HTML примерите могат да се отварят директно в браузър. Те работят локално и не изпращат данни към сървър.
 
