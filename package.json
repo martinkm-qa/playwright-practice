@@ -1,0 +1,14 @@
+{
+  "name": "playwright-practice",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:practice": "playwright test lectures/02-playwright/tests/practice.spec.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
+  }
+}
